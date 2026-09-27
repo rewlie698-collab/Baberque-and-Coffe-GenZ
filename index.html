@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baberque & Coffe Gen'Z | Bakar Nikmat Bersama Gen'Z</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bbq: {
+                            dark: '#121111',
+                            card: '#1a1818',
+                            border: '#2e2a28',
+                            amber: '#f59e0b',
+                            red: '#ef4444',
+                            orange: '#f97316',
+                            gold: '#fbbf24',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        .badge-halal {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        .modal-animate {
+            animation: modalFadeIn 0.25s ease-out forwards;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-bbq-dark text-gray-100 font-sans antialiased selection:bg-bbq-amber selection:text-black">
+
+    <!-- Floating WA Widget Button -->
+    <button onclick="openReservationModal()" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-400 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center gap-3 group border-2 border-emerald-300/40">
+        <i class="fa-brands fa-whatsapp text-3xl animate-bounce"></i>
+        <span class="hidden group-hover:inline font-bold text-sm pr-2">Pesan & Reservasi WA</span>
+        <span id="floating-cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white font-extrabold text-xs w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-bbq-dark/95 backdrop-blur-md border-b border-bbq-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-bbq-orange via-bbq-red to-bbq-amber p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-full h-full bg-bbq-dark rounded-full flex items-center justify-center border border-bbq-amber/30">
+                        <i class="fa-solid fa-fire-flame-curved text-bbq-amber text-xl"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="block font-serif text-lg font-bold text-white leading-tight tracking-wide">
+                        BABERQUE <span class="text-bbq-amber">& COFFE</span>
+                    </span>
+                    <span class="text-xs font-semibold text-bbq-amber/80 tracking-widest uppercase">GEN'Z</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-300">
+                <a href="#about" class="hover:text-bbq-amber transition-colors">Tentang Kami</a>
+                <a href="#menu" class="hover:text-bbq-amber transition-colors">Daftar Menu</a>
+                <a href="#calculator" class="hover:text-bbq-amber transition-colors">Order & Hitung</a>
+                <a href="#info" class="hover:text-bbq-amber transition-colors">Lokasi & Jam</a>
+            </div>
+
+            <!-- Header CTA -->
+            <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                    <i class="fa-solid fa-circle-check"></i> 100% HALAL
+                </div>
+                <button onclick="openWhatsAppDirect()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-bbq-amber via-bbq-orange to-bbq-red text-black font-bold text-sm hover:opacity-95 transition-all shadow-md hover:shadow-bbq-orange/20 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">Boking Reservasi</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-bbq-orange/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-bbq-amber/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
+                        <span class="px-3.5 py-1.5 rounded-full bg-bbq-amber/10 border border-bbq-amber/30 text-bbq-amber text-xs font-bold tracking-wide uppercase flex items-center gap-1.5">
+                            <i class="fa-solid fa-fire text-bbq-orange"></i> Bakar Nikmat Bersama Gen'Z
+                        </span>
+                        <span class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold tracking-wide flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halal"></i> 100% Halal
+                        </span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+                        Rasa Premium <br class="hidden sm:block"/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-bbq-amber via-bbq-orange to-bbq-red">
+                            Harga Bersahabat!
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Nikmati sensasi grill BBQ daging sapi premium Yoshinoya, Wagyu Melt, Saikoro dipadukan dengan kesegaran Kopi Aren & Milk Shake khas <strong class="text-white">Baberque & Coffe Gen'Z</strong>. Makan enak, nongkrong jadi lebih seru!
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+                        <button onclick="scrollToCalculator()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-bbq-amber via-bbq-orange to-bbq-red text-black font-extrabold text-base shadow-lg hover:shadow-bbq-amber/25 hover:scale-[1.02] active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator"></i>
+                            Pesan & Hitung Paket
+                        </button>
+                        <button onclick="openWhatsAppDirect()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            Chat WA Langsung
+                        </button>
+                    </div>
+
+                    <div class="pt-6 border-t border-bbq-border/60 grid grid-cols-2 sm:grid-cols-3 gap-4 text-left max-w-xl mx-auto lg:mx-0">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-bbq-amber/10 flex items-center justify-center text-bbq-amber text-lg">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">Jam Buka</div>
+                                <div class="text-sm font-bold text-white">13.00 - 22.00 WIB</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-bbq-orange/10 flex items-center justify-center text-bbq-orange text-lg">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">Cocok Untuk</div>
+                                <div class="text-sm font-bold text-white">1 - 7+ Orang</div>
+                            </div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-lg">
+                                <i class="fa-solid fa-tag"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">Harga Paket</div>
+                                <div class="text-sm font-bold text-white">Mulai Rp 45.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Card Graphic -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-bbq-amber via-bbq-orange to-bbq-red rounded-3xl blur opacity-30"></div>
+                        <div class="relative bg-bbq-card rounded-2xl border border-bbq-border p-6 shadow-2xl">
+                            <div class="flex items-center justify-between pb-4 border-b border-bbq-border mb-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-bbq-amber/20 text-bbq-amber">REKOMENDASI GEN'Z</span>
+                            </div>
+
+                            <div class="relative rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-neutral-900 to-black p-6 text-center border border-bbq-border">
+                                <div class="text-6xl mb-3">🥩 🔥 ☕</div>
+                                <h3 class="text-2xl font-extrabold text-white mb-1">Paket Sultan & Kopi Aren</h3>
+                                <p class="text-xs text-gray-400">Perpaduan daging Wagyu, Saikoro & Kopi Susu Aren Segar!</p>
+                            </div>
+
+                            <div class="space-y-3 mb-6">
+                                <div class="flex justify-between items-center p-3 rounded-lg bg-black/40 border border-white/5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded bg-bbq-amber/20 text-bbq-amber flex items-center justify-center font-bold text-sm">1</div>
+                                        <div>
+                                            <div class="text-sm font-bold text-white">Paket Jomblo</div>
+                                            <div class="text-xs text-gray-400">1-2 Orang • Sapi + Ayam + Sosis</div>
+                                        </div>
+                                    </div>
+                                    <span class="font-extrabold text-bbq-amber text-sm">Rp 45.000</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 rounded-lg bg-black/40 border border-white/5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded bg-bbq-orange/20 text-bbq-orange flex items-center justify-center font-bold text-sm">2</div>
+                                        <div>
+                                            <div class="text-sm font-bold text-white">Paket Couple</div>
+                                            <div class="text-xs text-gray-400">2-3 Orang • Sapi Yoshinoya 300g</div>
+                                        </div>
+                                    </div>
+                                    <span class="font-extrabold text-bbq-amber text-sm">Rp 90.000</span>
+                                </div>
+                            </div>
+
+                            <button onclick="orderSingleItem('Paket Sultan', 300000)" class="w-full py-3.5 text-center rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-extrabold text-sm transition-all shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Pesan Paket Sultan via WA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Menu Section -->
+    <section id="menu" class="py-20 bg-black/40 border-t border-bbq-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-bbq-amber text-xs font-bold tracking-widest uppercase mb-2 block">Pilihan Lezat</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Daftar Menu Spesial</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Pilih kategori menu favorit Anda dari BBQ Grill sepuasnya hingga aneka racikan Kopi & Non-Kopi Gen'Z.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12">
+                <button onclick="switchTab('bbq')" id="tab-bbq" class="tab-btn active px-5 py-3 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center gap-2 bg-gradient-to-r from-bbq-amber to-bbq-orange text-black shadow-lg">
+                    <i class="fa-solid fa-drumstick-bite"></i> Paket BBQ Grill
+                </button>
+                <button onclick="switchTab('kopi')" id="tab-kopi" class="tab-btn px-5 py-3 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center gap-2 bg-bbq-card text-gray-300 border border-bbq-border hover:border-bbq-amber/40">
+                    <i class="fa-solid fa-mug-hot"></i> Kopi Gen'Z
+                </button>
+                <button onclick="switchTab('nonkopi')" id="tab-nonkopi" class="tab-btn px-5 py-3 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center gap-2 bg-bbq-card text-gray-300 border border-bbq-border hover:border-bbq-amber/40">
+                    <i class="fa-solid fa-glass-water"></i> Non Kopi
+                </button>
+                <button onclick="switchTab('tambahan')" id="tab-tambahan" class="tab-btn px-5 py-3 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center gap-2 bg-bbq-card text-gray-300 border border-bbq-border hover:border-bbq-amber/40">
+                    <i class="fa-solid fa-plus-circle"></i> Ekstra & Minuman
+                </button>
+            </div>
+
+            <!-- TAB 1: PAKET BBQ -->
+            <div id="content-bbq" class="tab-content grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Paket Jomblo -->
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-6 hover:border-bbq-amber/60 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="px-2.5 py-1 rounded bg-bbq-amber/10 text-bbq-amber text-xs font-bold">1-2 Orang</span>
+                                <h3 class="text-xl font-bold text-white mt-2 group-hover:text-bbq-amber transition-colors">Paket Jomblo</h3>
+                            </div>
+                            <span class="text-2xl font-black text-bbq-amber">45k</span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Ayam slice 200gr</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Sosis</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Selada & jamur enoki</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Bawang bombai & putih</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addToCart('Paket Jomblo', 45000)" class="py-2.5 rounded-xl bg-bbq-border hover:bg-bbq-amber hover:text-black font-bold text-xs uppercase tracking-wider transition-all">
+                            + Order
+                        </button>
+                        <button onclick="orderSingleItem('Paket Jomblo', 45000)" class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> Pesan WA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paket Couple -->
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-6 hover:border-bbq-amber/60 transition-all flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute -right-12 top-4 bg-bbq-amber text-black text-[10px] font-extrabold px-10 py-1 rotate-45 shadow">POPULER</div>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="px-2.5 py-1 rounded bg-bbq-amber/10 text-bbq-amber text-xs font-bold">2-3 Orang</span>
+                                <h3 class="text-xl font-bold text-white mt-2 group-hover:text-bbq-amber transition-colors">Paket Couple</h3>
+                            </div>
+                            <span class="text-2xl font-black text-bbq-amber">90k</span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Ayam slice 200gr</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Yoshinoya 300gr</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Sosis</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Selada & jamur enoki</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Bawang bombai & putih</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addToCart('Paket Couple', 90000)" class="py-2.5 rounded-xl bg-bbq-border hover:bg-bbq-amber hover:text-black font-bold text-xs uppercase tracking-wider transition-all">
+                            + Order
+                        </button>
+                        <button onclick="orderSingleItem('Paket Couple', 90000)" class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> Pesan WA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paket Keluarga Kecil -->
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-6 hover:border-bbq-amber/60 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="px-2.5 py-1 rounded bg-bbq-amber/10 text-bbq-amber text-xs font-bold">3-4 Orang</span>
+                                <h3 class="text-xl font-bold text-white mt-2 group-hover:text-bbq-amber transition-colors">Paket Keluarga Kecil</h3>
+                            </div>
+                            <span class="text-2xl font-black text-bbq-amber">135k</span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Ayam 200g & Yoshinoya 200g</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Wagyu short plate 100g</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Saikoro 100g & Sosis</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Selada, jamur enoki, bombai & putih</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addToCart('Paket Keluarga Kecil', 135000)" class="py-2.5 rounded-xl bg-bbq-border hover:bg-bbq-amber hover:text-black font-bold text-xs uppercase tracking-wider transition-all">
+                            + Order
+                        </button>
+                        <button onclick="orderSingleItem('Paket Keluarga Kecil', 135000)" class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> Pesan WA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paket Keluarga Besar -->
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-6 hover:border-bbq-amber/60 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="px-2.5 py-1 rounded bg-bbq-amber/10 text-bbq-amber text-xs font-bold">4-5 Orang</span>
+                                <h3 class="text-xl font-bold text-white mt-2 group-hover:text-bbq-amber transition-colors">Paket Keluarga Besar</h3>
+                            </div>
+                            <span class="text-2xl font-black text-bbq-amber">200k</span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Ayam 200g & Yoshinoya 300g</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Wagyu slice meltic 200g</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Wagyu short plate 100g & Saikoro 200g</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-amber text-xs"></i> Sosis, Selada & Enoki lengkap</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addToCart('Paket Keluarga Besar', 200000)" class="py-2.5 rounded-xl bg-bbq-border hover:bg-bbq-amber hover:text-black font-bold text-xs uppercase tracking-wider transition-all">
+                            + Order
+                        </button>
+                        <button onclick="orderSingleItem('Paket Keluarga Besar', 200000)" class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> Pesan WA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paket Sultan -->
+                <div class="bg-gradient-to-b from-bbq-card to-neutral-900 rounded-2xl border border-bbq-amber/40 p-6 hover:border-bbq-amber transition-all flex flex-col justify-between group lg:col-span-2">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="px-2.5 py-1 rounded bg-bbq-gold/20 text-bbq-gold text-xs font-bold">5-7 Orang • ULTIMATE</span>
+                                <h3 class="text-2xl font-bold text-white mt-2 group-hover:text-bbq-gold transition-colors">Paket Sultan ⭐</h3>
+                            </div>
+                            <span class="text-3xl font-black text-bbq-gold">300k</span>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-2 text-sm text-gray-300 mb-6">
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-bbq-gold text-xs"></i> Yoshinoya 300gr</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-bbq-gold text-xs"></i> Wagyu melt 200gr</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-bbq-gold text-xs"></i> Wagyu short plate 300gr</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-bbq-gold text-xs"></i> Blue sirloin 160gr</li>
+                            </ul>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-bbq-gold text-xs"></i> Saikoro 300gr</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-gold text-xs"></i> Sosis pilihan</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-gold text-xs"></i> Selada & jamur enoki</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bbq-gold text-xs"></i> Bawang bombai & putih</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <button onclick="addToCart('Paket Sultan', 300000)" class="py-3 rounded-xl bg-bbq-border hover:bg-bbq-gold hover:text-black font-extrabold text-xs uppercase tracking-wider transition-all">
+                            + Tambah Ke Order
+                        </button>
+                        <button onclick="orderSingleItem('Paket Sultan', 300000)" class="py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Pesan Sultan via WA
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: KOPI GEN'Z -->
+            <div id="content-kopi" class="tab-content hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="kopi-grid-container" class="contents"></div>
+            </div>
+
+            <!-- TAB 3: NON KOPI -->
+            <div id="content-nonkopi" class="tab-content hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="nonkopi-grid-container" class="contents"></div>
+            </div>
+
+            <!-- TAB 4: EXTRA & MINUMAN -->
+            <div id="content-tambahan" class="tab-content hidden grid md:grid-cols-2 gap-6">
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-6">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-bbq-border pb-3">
+                        <i class="fa-solid fa-drumstick-bite text-bbq-amber"></i> Menu Daging & Ekstra Grill
+                    </h3>
+                    <div id="extra-food-container" class="space-y-3"></div>
+                </div>
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-6">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-bbq-border pb-3">
+                        <i class="fa-solid fa-bottle-water text-bbq-amber"></i> Sayur, Side Dish & Minuman
+                    </h3>
+                    <div id="extra-drink-container" class="space-y-3"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Order Calculator & Reservation Section -->
+    <section id="calculator" class="py-20 bg-bbq-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-bbq-card via-neutral-900 to-black rounded-3xl border border-bbq-border p-6 md:p-10 shadow-2xl">
+                
+                <div class="grid lg:grid-cols-12 gap-10 items-start">
+                    
+                    <!-- Left Column: Cart Items -->
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center justify-between mb-6 pb-4 border-b border-bbq-border">
+                            <div>
+                                <span class="text-bbq-amber text-xs font-bold uppercase tracking-wider">Simulasi Order</span>
+                                <h2 class="text-2xl font-extrabold text-white">Hitung & Pesan Sekarang</h2>
+                            </div>
+                            <button onclick="clearCart()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-1 font-semibold">
+                                <i class="fa-solid fa-trash"></i> Kosongkan
+                            </button>
+                        </div>
+
+                        <!-- Selected Items Container -->
+                        <div id="cart-items" class="space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto pr-2 mb-6">
+                            <!-- JS Populated -->
+                        </div>
+
+                        <!-- Total Banner -->
+                        <div class="bg-black/60 rounded-xl p-4 border border-bbq-border flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400">Total Estimasi Tagihan</div>
+                                <div id="cart-total" class="text-2xl font-black text-bbq-amber">Rp 0</div>
+                            </div>
+                            <span class="text-xs text-gray-400 italic">*Pembayaran dilakukan di lokasi</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Booking Information Form -->
+                    <div class="lg:col-span-5 bg-bbq-card/80 p-6 rounded-2xl border border-bbq-border">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-user-check text-bbq-amber"></i> Informasi Reservasi
+                        </h3>
+                        
+                        <form id="order-form" onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Nama Pemesan</label>
+                                <input type="text" id="cust-name" required placeholder="Contoh: Budi Prasetyo" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-bbq-amber transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Pilih Meja Dine-In</label>
+                                <select id="cust-table" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-bbq-amber transition-colors">
+                                    <option value="Meja 1">Meja 1</option>
+                                    <option value="Meja 2">Meja 2</option>
+                                    <option value="Meja 3">Meja 3</option>
+                                    <option value="Meja 4">Meja 4</option>
+                                    <option value="Meja 5">Meja 5</option>
+                                    <option value="Meja 6">Meja 6</option>
+                                    <option value="Meja 7">Meja 7</option>
+                                    <option value="Meja 8">Meja 8</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Jumlah Orang</label>
+                                <select id="cust-pax" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-bbq-amber transition-colors">
+                                    <option value="1-2 Orang">1-2 Orang</option>
+                                    <option value="3-4 Orang">3-4 Orang</option>
+                                    <option value="5-6 Orang">5-6 Orang</option>
+                                    <option value="7+ Orang (Rombongan)">7+ Orang (Rombongan)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Tgl & Jam Kedatangan</label>
+                                <input type="text" id="cust-time" required placeholder="Contoh: Hari ini, Jam 19.00 WIB" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-bbq-amber transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Catatan Tambahan (Opsional)</label>
+                                <textarea id="cust-note" rows="2" placeholder="Contoh: Minta saus saikoro ekstra" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-bbq-amber transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Pesanan via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Info & Hours Section -->
+    <section id="info" class="py-20 bg-black/60 border-t border-bbq-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="bg-bbq-card p-8 rounded-2xl border border-bbq-border text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl badge-halal flex items-center justify-center text-white text-3xl mb-4 shadow-lg">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">100% Halal</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Semua bahan daging sapi, ayam, sosis, hingga bumbu racikan dijamin 100% Halal & higienis untuk keluarga Anda.
+                    </p>
+                </div>
+
+                <div class="bg-bbq-card p-8 rounded-2xl border border-bbq-border text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-bbq-amber to-bbq-orange flex items-center justify-center text-black text-3xl mb-4 shadow-lg">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Jam Operasional</h3>
+                    <p class="text-bbq-amber font-bold text-lg mb-1">13.00 - 22.00 WIB</p>
+                    <p class="text-gray-400 text-sm">Buka Setiap Hari (Senin - Minggu)</p>
+                </div>
+
+                <div class="bg-bbq-card p-8 rounded-2xl border border-bbq-border text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-bbq-orange to-bbq-red flex items-center justify-center text-white text-3xl mb-4 shadow-lg">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Kontak Reservasi</h3>
+                    <p class="text-gray-300 font-bold text-lg mb-2">082195286495</p>
+                    <button onclick="openWhatsAppDirect()" class="text-xs text-bbq-amber hover:underline font-semibold flex items-center gap-1">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Klik untuk Chat WhatsApp &rarr;
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Quick Order Modal -->
+    <div id="wa-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-bbq-card border border-bbq-border rounded-2xl max-w-lg w-full p-6 modal-animate relative shadow-2xl">
+            <button onclick="closeReservationModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white">Reservasi Langsung via WA</h3>
+                    <p class="text-xs text-gray-400">Baberque & Coffe Gen'Z (082195286495)</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 mb-6 text-sm">
+                <div id="modal-cart-summary" class="p-3 bg-black/50 rounded-xl border border-white/5 max-h-36 overflow-y-auto">
+                    <!-- Populated by JS -->
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Nama Pemesan</label>
+                    <input type="text" id="modal-cust-name" placeholder="Nama Anda" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-bbq-amber">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Pilih Meja</label>
+                    <select id="modal-cust-table" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-bbq-amber">
+                        <option value="Meja 1">Meja 1</option>
+                        <option value="Meja 2">Meja 2</option>
+                        <option value="Meja 3">Meja 3</option>
+                        <option value="Meja 4">Meja 4</option>
+                        <option value="Meja 5">Meja 5</option>
+                        <option value="Meja 6">Meja 6</option>
+                        <option value="Meja 7">Meja 7</option>
+                        <option value="Meja 8">Meja 8</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Rencana Kedatangan</label>
+                    <input type="text" id="modal-cust-time" placeholder="Hari & Jam (misal: Hari ini, jam 19.00 WIB)" class="w-full bg-neutral-900 border border-bbq-border rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-bbq-amber">
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="closeReservationModal()" class="w-1/3 py-2.5 rounded-xl bg-bbq-border text-gray-300 font-bold text-xs">
+                    Batal
+                </button>
+                <button onclick="submitModalWA()" class="w-2/3 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Buka WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-bbq-dark border-t border-bbq-border text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">© 2026 Baberque & Coffe Gen'Z. Bakar Nikmat Bersama Gen'Z.</p>
+            <p class="text-gray-600">Rasa Premium Harga Bersahabat • Jam Buka: 13.00 - 22.00 WIB</p>
+        </div>
+    </footer>
+
+    <script>
+        const WA_NUMBER = "6282195286495";
+
+        const kopiItems = [
+            { name: "Gula Aren", price: 12000, desc: "Kopi susu espresso blend dengan gula aren asli", badge: "BESTSELLER" },
+            { name: "Butterscotch", price: 15000, desc: "Kopi aromatik rasa karamel butterscotch gurih dan manis" },
+            { name: "Cappucino", price: 10000, desc: "Espresso hangat/dingin dengan foam susu lembut" },
+            { name: "Caramel", price: 12000, desc: "Kopi racikan spesial dengan sirup karamel legit" },
+            { name: "Americano", price: 8000, desc: "Espresso murni segar tanpa gula tambahan" },
+            { name: "Pandan Latte", price: 12000, desc: "Kombinasi unik kopi & aroma wangi pandan alami" },
+        ];
+
+        const nonKopiItems = [
+            { name: "Matcha Milk Shake", price: 15000, desc: "Susu matcha jepang dengan foam lembut", badge: "PREMIUM" },
+            { name: "Thai Tea", price: 10000, desc: "Teh khas Thailand manis dan creamy" },
+            { name: "Red Velvet Milk Shake", price: 15000, desc: "Varian red velvet gurih manis berlimpah", badge: "PREMIUM" },
+            { name: "Royal Choco", price: 15000, desc: "Cokelat pekat pilihan untuk pencinta manis" },
+            { name: "Mangga", price: 10000, desc: "Minuman rasa mangga tropis segar" },
+            { name: "Leci", price: 10000, desc: "Kesejukan rasa buah leci manis" },
+            { name: "Lemon", price: 10000, desc: "Olahan lemon citrus penghilang dahaga" },
+        ];
+
+        const extraFoodItems = [
+            { name: "Nasi Putih", price: 5000 },
+            { name: "Ayam Slice (100g)", price: 10000 },
+            { name: "Yoshinoya (100g)", price: 20000 },
+            { name: "Saikoro (100g)", price: 25000 },
+            { name: "Wagyu Short Plate (100g)", price: 23000 },
+            { name: "Wagyu Slice Meltic (100g)", price: 25000 },
+            { name: "Blue Label Sirloin (160g)", price: 50000 },
+            { name: "Sosis", price: 5000 },
+            { name: "Chikuwa", price: 5000 },
+            { name: "Fish Roll", price: 5000 },
+            { name: "Dumpling Ayam", price: 5000 },
+            { name: "Dumpling Keju", price: 5000 },
+        ];
+
+        const extraDrinkItems = [
+            { name: "Jamur Enoki", price: 5000 },
+            { name: "Selada", price: 4000 },
+            { name: "Extra Oil", price: 3000 },
+            { name: "Extra Sambal", price: 3000 },
+            { name: "Aqua", price: 5000 },
+            { name: "Teh Botol", price: 6000 },
+        ];
+
+        let cart = [];
+
+        function openWhatsAppDirect(text = "Halo Baberque & Coffe Gen'Z, saya ingin pesan/reservasi meja.") {
+            const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function switchTab(tabKey) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-bbq-amber', 'to-bbq-orange', 'text-black', 'shadow-lg');
+                btn.classList.add('bg-bbq-card', 'text-gray-300', 'border', 'border-bbq-border');
+            });
+
+            const activeBtn = document.getElementById('tab-' + tabKey);
+            activeBtn.classList.remove('bg-bbq-card', 'text-gray-300', 'border', 'border-bbq-border');
+            activeBtn.classList.add('bg-gradient-to-r', 'from-bbq-amber', 'to-bbq-orange', 'text-black', 'shadow-lg');
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            document.getElementById('content-' + tabKey).classList.remove('hidden');
+        }
+
+        function renderDrinkCard(item) {
+            return `
+                <div class="bg-bbq-card rounded-2xl border border-bbq-border p-5 hover:border-bbq-amber/50 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-white text-lg group-hover:text-bbq-amber transition-colors">${item.name}</h4>
+                            <span class="font-black text-bbq-amber text-lg">${item.price / 1000}k</span>
+                        </div>
+                        ${item.badge ? `<span class="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold mb-2">${item.badge}</span>` : ''}
+                        <p class="text-xs text-gray-400 mb-4">${item.desc}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addToCart('${item.name}', ${item.price})" class="py-2 rounded-xl bg-bbq-border hover:bg-bbq-amber hover:text-black font-bold text-xs uppercase tracking-wider transition-all">
+                            + Order
+                        </button>
+                        <button onclick="orderSingleItem('${item.name}', ${item.price})" class="py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> WA
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRowItem(item) {
+            return `
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-black/40 border border-white/5 hover:border-bbq-amber/30 transition-colors">
+                    <div>
+                        <div class="text-sm font-bold text-white">${item.name}</div>
+                        <div class="text-xs text-bbq-amber font-semibold">Rp ${item.price.toLocaleString('id-ID')}</div>
+                    </div>
+                    <div class="flex gap-1">
+                        <button onclick="addToCart('${item.name}', ${item.price})" class="px-2.5 py-1.5 rounded-lg bg-bbq-border hover:bg-bbq-amber hover:text-black font-bold text-xs transition-colors">
+                            + Order
+                        </button>
+                        <button onclick="orderSingleItem('${item.name}', ${item.price})" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('kopi-grid-container').innerHTML = kopiItems.map(renderDrinkCard).join('');
+            document.getElementById('nonkopi-grid-container').innerHTML = nonKopiItems.map(renderDrinkCard).join('');
+            document.getElementById('extra-food-container').innerHTML = extraFoodItems.map(renderRowItem).join('');
+            document.getElementById('extra-drink-container').innerHTML = extraDrinkItems.map(renderRowItem).join('');
+            updateCartUI();
+        });
+
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateQty(name, change) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const floatBadge = document.getElementById('floating-cart-count');
+
+            let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (totalQty > 0) {
+                floatBadge.textContent = totalQty;
+                floatBadge.classList.remove('hidden');
+            } else {
+                floatBadge.classList.add('hidden');
+            }
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div id="empty-cart-msg" class="text-center py-12 border-2 border-dashed border-bbq-border rounded-xl">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-gray-600 mb-3 block"></i>
+                        <p class="text-gray-400 text-sm">Belum ada item dipilih.</p>
+                        <p class="text-xs text-gray-500 mt-1">Klik tombol "+ Order" pada menu di atas untuk mulai simulasi.</p>
+                    </div>
+                `;
+                totalEl.textContent = "Rp 0";
+                return;
+            }
+
+            let total = 0;
+            let html = '';
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+
+                html += `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-black/60 border border-bbq-border">
+                        <div>
+                            <div class="text-sm font-bold text-white">${item.name}</div>
+                            <div class="text-xs text-gray-400">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-extrabold text-bbq-amber">Rp ${subtotal.toLocaleString('id-ID')}</span>
+                            <div class="flex items-center gap-1 bg-bbq-border rounded-lg p-1">
+                                <button onclick="updateQty('${item.name}', -1)" class="w-6 h-6 rounded bg-neutral-800 text-white font-bold text-xs hover:bg-neutral-700">-</button>
+                                <span class="w-6 text-center text-xs font-bold">${item.qty}</span>
+                                <button onclick="updateQty('${item.name}', 1)" class="w-6 h-6 rounded bg-neutral-800 text-white font-bold text-xs hover:bg-neutral-700">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            totalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function orderSingleItem(name, price) {
+            addToCart(name, price);
+            openReservationModal();
+        }
+
+        function scrollToCalculator() {
+            document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openReservationModal() {
+            const modalSummary = document.getElementById('modal-cart-summary');
+            if (cart.length === 0) {
+                modalSummary.innerHTML = `<p class="text-xs text-gray-400 italic">Pemesanan/Reservasi Meja Umum</p>`;
+            } else {
+                let html = '<div class="font-bold text-xs text-bbq-amber mb-1">Item Pesanan Anda:</div>';
+                let total = 0;
+                cart.forEach(i => {
+                    const sub = i.price * i.qty;
+                    total += sub;
+                    html += `<div class="flex justify-between text-xs text-gray-300"><span>• ${i.name} (x${i.qty})</span><span>Rp ${sub.toLocaleString('id-ID')}</span></div>`;
+                });
+                html += `<div class="border-t border-white/10 mt-2 pt-1 font-bold text-xs flex justify-between text-white"><span>Total:</span><span class="text-bbq-amber">Rp ${total.toLocaleString('id-ID')}</span></div>`;
+                modalSummary.innerHTML = html;
+            }
+
+            document.getElementById('wa-modal').classList.remove('hidden');
+        }
+
+        function closeReservationModal() {
+            document.getElementById('wa-modal').classList.add('hidden');
+        }
+
+        function submitModalWA() {
+            const name = document.getElementById('modal-cust-name').value || "Pelanggan Gen'Z";
+            const tableNum = document.getElementById('modal-cust-table').value;
+            const time = document.getElementById('modal-cust-time').value || "Hari ini";
+
+            let text = `Halo Baberque & Coffe Gen'Z! 👋\n\n`;
+            text += `Saya *${name}* ingin melakukan reservasi dine-in:\n`;
+            text += `🪑 *Pilihan Meja:* ${tableNum}\n`;
+            text += `⏰ *Waktu Kedatangan:* ${time}\n\n`;
+
+            if (cart.length > 0) {
+                text += `🛒 *Detail Pesanan:* \n`;
+                let total = 0;
+                cart.forEach(i => {
+                    const sub = i.price * i.qty;
+                    total += sub;
+                    text += `- ${i.name} (x${i.qty}) : Rp ${sub.toLocaleString('id-ID')}\n`;
+                });
+                text += `\n💰 *Total Estimasi:* Rp ${total.toLocaleString('id-ID')}\n\n`;
+            }
+
+            text += `Mohon konfirmasi ketersediaan mejanya ya Kak! Terima kasih.`;
+
+            openWhatsAppDirect(text);
+            closeReservationModal();
+        }
+
+        function sendWhatsAppOrder(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('cust-name').value;
+            const tableNum = document.getElementById('cust-table').value;
+            const pax = document.getElementById('cust-pax').value;
+            const time = document.getElementById('cust-time').value;
+            const note = document.getElementById('cust-note').value;
+
+            if (cart.length === 0) {
+                const msgBox = document.createElement('div');
+                msgBox.className = 'fixed top-6 right-6 z-50 bg-red-600 text-white font-bold text-sm px-4 py-3 rounded-xl shadow-2xl';
+                msgBox.textContent = 'Silakan pilih minimal 1 item menu terlebih dahulu!';
+                document.body.appendChild(msgBox);
+                setTimeout(() => msgBox.remove(), 3000);
+                return;
+            }
+
+            let text = `Halo Baberque & Coffe Gen'Z! 👋\n\n`;
+            text += `Saya mau reservasi Dine-In & pesan menu:\n`;
+            text += `👤 *Nama:* ${name}\n`;
+            text += `🪑 *Pilihan Meja:* ${tableNum}\n`;
+            text += `👥 *Jumlah Orang:* ${pax}\n`;
+            text += `⏰ *Kedatangan:* ${time}\n\n`;
+            
+            text += `🛒 *Detail Pesanan Menu:* \n`;
+            let total = 0;
+            cart.forEach(item => {
+                const sub = item.price * item.qty;
+                total += sub;
+                text += `- ${item.name} (x${item.qty}) : Rp ${sub.toLocaleString('id-ID')}\n`;
+            });
+
+            text += `\n💰 *Total Tagihan:* Rp ${total.toLocaleString('id-ID')}\n`;
+
+            if (note) {
+                text += `📝 *Catatan Tambahan:* ${note}\n`;
+            }
+
+            text += `\nMohon diproses dan dikonfirmasi mejanya ya Kak. Terima kasih!`;
+
+            openWhatsAppDirect(text);
+        }
+    </script>
+</body>
+</html>
